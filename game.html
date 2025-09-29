@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .game {
+            display: flex;
+            gap: 10px;
+            /* space between input and button */
+            margin-bottom: 20px;
+        }
+
+        #taskInput {
+            flex: 1;
+            /* make it stretch */
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        }
+
+        #addTaskBtn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #4caf50;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #addTaskBtn:hover {
+            background-color: #45a049;
+        }
+
+        .task-input div {
+            padding: 10px;
+            border: 1px solid black;
+            border-radius: 8px;
+            /* font-size: 16px; */
+            margin-bottom: 5px;
+            display: flex;
+        }
+
+        .task-input div p {
+            flex: 1;
+            /* padding: 5px 10px; */
+            font-size: 20px;
+            margin: auto;
+            font-style: normal;
+        }
+
+        .delete-btn {
+            padding: 9px 10px;
+            font-size: 14px;
+            border: 1px solid #000000;
+            background-color: #f44336;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+            /* margin: 2px; */
+        }
+
+        .delete-btn:hover {
+            background-color: #da190b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="task-input">
+        <div class="game">
+            <input type="text" id="taskInput" placeholder="Enter a new task..." />
+            <button id="addTaskBtn">Add</button>
+        </div>
+    </div>
+
+    <script>
+        const input = document.getElementById("taskInput");
+        const addBtn = document.getElementById("addTaskBtn");
+        const work = document.getElementsByClassName("task-input");
+
+
+        addBtn.addEventListener("click", () => {
+            const task = input.value.trim();
+            if (task) {
+                let div = document.createElement("div");
+                div.innerHTML = `<p>${task}</p>`;
+                div.innerHTML += `<button class="delete-btn">Delete</button>`;
+                div.className = "task";
+                document.querySelector(".task-input").append(div);
+                input.value = ""; // clear input
+            }
+        });
+        // buttons = document.querySelectorAll(".delete-btn");
+        // buttons.forEach((button) => {
+        //   button.addEventListener("click", (e) => {
+        //     e.target.parentElement.remove();
+        //   });
+        // });
+        document.querySelector(".task-input").addEventListener("click", (e) => {
+            if (e.target.classList.contains("delete-btn")) {
+                e.target.parentElement.remove();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
